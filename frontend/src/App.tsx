@@ -10,8 +10,8 @@ export const App: React.FC = () => {
   const [isDriverPortal, setIsDriverPortal] = useState<boolean>(false);
   const [activeSessionId, setActiveSessionId] = useState<string>('');
 
-  // Check URL query parameters on load (e.g. ?view=driver&session=QR-XXXX from mobile scan)
-  useEffect(() => {
+  // Sync state from URL parameters
+  const syncStateFromUrl = () => {
     const params = new URLSearchParams(window.location.search);
     const viewParam = params.get('view');
     const sessionParam = params.get('session');
@@ -23,15 +23,51 @@ export const App: React.FC = () => {
     if (viewParam === 'driver') {
       setIsDriverPortal(true);
     } else if (viewParam === 'kiosk') {
+      setIsDriverPortal(false);
       setActiveTab('kiosk');
     } else if (viewParam === 'mqtt') {
+      setIsDriverPortal(false);
       setActiveTab('mqtt');
+    } else {
+      setIsDriverPortal(false);
+      setActiveTab('dashboard');
     }
+  };
+
+  // Initial load & browser back/forward history navigation
+  useEffect(() => {
+    syncStateFromUrl();
+
+    const handlePopState = () => {
+      syncStateFromUrl();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  // Switch tab and update the browser URL
+  const switchTab = (tab: 'dashboard' | 'mqtt' | 'kiosk') => {
+    setActiveTab(tab);
+    setIsDriverPortal(false);
+    const url = new URL(window.location.href);
+    if (tab === 'dashboard') {
+      url.searchParams.delete('view');
+      url.searchParams.delete('session');
+    } else {
+      url.searchParams.set('view', tab);
+      url.searchParams.delete('session');
+    }
+    window.history.pushState({}, '', url.toString());
+  };
 
   const handleOpenDriverView = (sessionId: string) => {
     setActiveSessionId(sessionId);
     setIsDriverPortal(true);
+    const url = new URL(window.location.href);
+    url.searchParams.set('view', 'driver');
+    url.searchParams.set('session', sessionId);
+    window.history.pushState({}, '', url.toString());
   };
 
   // 1. ISOLATED MOBILE DRIVER VIEW: No admin navbar, no access to other portals
@@ -57,7 +93,7 @@ export const App: React.FC = () => {
 
         <div className="nav-tabs">
           <button
-            onClick={() => setActiveTab('dashboard')}
+            onClick={() => switchTab('dashboard')}
             className={`nav-tab ${activeTab === 'dashboard' ? 'nav-tab-active' : ''}`}
           >
             <LayoutDashboard size={14} />
@@ -65,7 +101,7 @@ export const App: React.FC = () => {
           </button>
 
           <button
-            onClick={() => setActiveTab('mqtt')}
+            onClick={() => switchTab('mqtt')}
             className={`nav-tab nav-tab-mqtt ${activeTab === 'mqtt' ? 'nav-tab-active' : ''}`}
           >
             <Radio size={14} className={activeTab === 'mqtt' ? 'animate-pulse text-cyan-300' : ''} />
@@ -73,7 +109,7 @@ export const App: React.FC = () => {
           </button>
 
           <button
-            onClick={() => setActiveTab('kiosk')}
+            onClick={() => switchTab('kiosk')}
             className={`nav-tab ${activeTab === 'kiosk' ? 'nav-tab-active' : ''}`}
           >
             <QrCode size={14} style={{ color: activeTab === 'kiosk' ? '#ffffff' : '#38bdf8' }} />
@@ -85,17 +121,17 @@ export const App: React.FC = () => {
       {/* Main Tab Content */}
       <main className="dashboard-main">
         {activeTab === 'dashboard' && (
-          <AdminDashboard onNavigateToMQTT={() => setActiveTab('mqtt')} />
+          <AdminDashboard onNavigateToMQTT={() => switchTab('mqtt')} />
         )}
 
         {activeTab === 'mqtt' && (
-          <LiveMQTTMonitorPage onNavigateToDashboard={() => setActiveTab('dashboard')} />
+          <LiveMQTTMonitorPage onNavigateToDashboard={() => switchTab('dashboard')} />
         )}
 
         {activeTab === 'kiosk' && (
           <KioskQRStationPage
             onOpenDriverView={handleOpenDriverView}
-            onNavigateToDashboard={() => setActiveTab('dashboard')}
+            onNavigateToDashboard={() => switchTab('dashboard')}
           />
         )}
       </main>
