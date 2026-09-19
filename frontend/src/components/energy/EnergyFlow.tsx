@@ -53,7 +53,7 @@ export const EnergyFlow: React.FC<EnergyFlowProps> = ({ energy, evs }) => {
             <span>Facility Baseload: <strong>{buildingDemand.toFixed(1)} kW</strong></span>
           </div>
 
-          <div className="flow-badge flow-sink bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800">
+          <div className="flow-badge flow-sink bg-emerald-950/40 text-emerald-400 border-emerald-800">
             <Car size={14} />
             <span>Active EV Fleet: <strong>{totalEvDemand.toFixed(1)} kW</strong></span>
           </div>

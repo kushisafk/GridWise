@@ -177,11 +177,21 @@ export interface HardwareStatusSummary {
 export interface TimeSeriesPoint {
   timestamp: string;
   timeLabel: string;
+  time?: string;
   totalDemandKw: number;
   effectiveCapacityKw: number;
   solarGenerationKw: number;
   evFleetPowerKw: number;
   batterySocPercent: number;
+
+  totalDemand?: number;
+  buildingDemand?: number;
+  evDemand?: number;
+  effectiveCapacity?: number;
+  solarGeneration?: number;
+  solarAvailability?: number;
+  batterySoc?: number;
+  batteryPower?: number;
 }
 
 export type QRSessionStatus = 'active' | 'scanned' | 'registered' | 'expired';

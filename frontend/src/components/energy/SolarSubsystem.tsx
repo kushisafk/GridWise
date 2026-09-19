@@ -24,7 +24,7 @@ export const SolarSubsystem: React.FC<SolarSubsystemProps> = ({
           <Sun size={16} className="text-amber-400" />
           Solar PV & Renewable Generation
         </h3>
-        <span className="text-xs font-semibold text-amber-500 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded">
+        <span className="text-xs font-semibold text-amber-400 bg-amber-950/40 px-2 py-0.5 rounded">
           {generation.toFixed(1)} kW Solar
         </span>
       </div>
@@ -32,7 +32,7 @@ export const SolarSubsystem: React.FC<SolarSubsystemProps> = ({
       <div className="grid grid-cols-3 gap-2 text-sm">
         <div className="stat-box">
           <span className="stat-label">Availability</span>
-          <span className="stat-val text-amber-500 font-bold">{availability.toFixed(0)}%</span>
+          <span className="stat-val text-amber-400 font-bold">{availability.toFixed(0)}%</span>
         </div>
 
         <div className="stat-box">

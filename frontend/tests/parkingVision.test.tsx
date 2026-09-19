@@ -82,7 +82,7 @@ describe('ParkingVisionPanel', () => {
 
     render(<ParkingVisionPanel evs={mockEVs} pollIntervalMs={10000} />);
 
-    expect(screen.getByText(/PARKING VISION/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/PARKING VISION/i)[0]).toBeInTheDocument();
     expect(screen.getByText(/Camera 4 • Historical Replay/i)).toBeInTheDocument();
 
     await waitFor(() => {

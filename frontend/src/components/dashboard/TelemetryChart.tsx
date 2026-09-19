@@ -109,7 +109,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
       <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
         <div>
           <h3 className="text-sm font-bold text-slate-100">{title}</h3>
-          {subtitle && <p className="text-xs text-slate-400">{subtitle}</p>}
+          {subtitle && <p className="text-xs text-[#94a3b8]">{subtitle}</p>}
         </div>
         {/* Range selector */}
         <div className="flex rounded-lg border border-slate-700 bg-slate-800 p-0.5" role="tablist" aria-label="Time range">
@@ -123,7 +123,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
                 setHoverIdx(null);
               }}
               className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
-                rangeId === r.id ? 'bg-emerald-500/20 text-emerald-300' : 'text-slate-400 hover:text-slate-200'
+                rangeId === r.id ? 'bg-emerald-500/20 text-emerald-300' : 'text-[#94a3b8] hover:text-[#ffffff]'
               }`}
             >
               {r.label}
@@ -142,7 +142,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
               onClick={() => toggle(s.key)}
               aria-pressed={!off}
               className={`flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-medium transition-opacity ${
-                off ? 'border-slate-700 text-slate-500 opacity-60' : 'border-slate-700 text-slate-300'
+                off ? 'border-slate-700 text-[#a1a1aa] opacity-60' : 'border-slate-700 text-[#cbd5e1]'
               }`}
             >
               <span className="inline-block h-0.5 w-4 rounded" style={{ background: off ? '#475569' : s.color }} />
@@ -154,7 +154,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
 
       {sliced.length === 0 ? (
         <div className="chart-empty" style={{ height }}>
-          <span className="text-xs text-slate-400">Awaiting telemetry...</span>
+          <span className="text-xs text-[#94a3b8]">Awaiting telemetry...</span>
         </div>
       ) : (
         <div className="relative">
@@ -171,7 +171,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
               const y = pad.top + ih - r * ih;
               return (
                 <g key={r}>
-                  <line x1={pad.left} y1={y} x2={W - pad.right} y2={y} stroke="#334155" strokeOpacity="0.5" strokeDasharray="3 4" />
+                  <line x1={pad.left} y1={y} x2={W - pad.right} y2={y} stroke="#d4d4d8" strokeOpacity="0.5" strokeDasharray="3 4" />
                   <text x={pad.left - 5} y={y + 3} textAnchor="end" fontSize="9" fill="#94a3b8" fontFamily="JetBrains Mono, monospace">
                     {Math.round(maxVal * r)}
                   </text>
@@ -181,7 +181,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
             {/* X labels (sparse) */}
             {sliced.map((p, i) =>
               i % Math.ceil(sliced.length / 6) === 0 ? (
-                <text key={i} x={getX(i)} y={height - 6} textAnchor="middle" fontSize="9" fill="#64748b" fontFamily="JetBrains Mono, monospace">
+                <text key={i} x={getX(i)} y={height - 6} textAnchor="middle" fontSize="9" fill="#a1a1aa" fontFamily="JetBrains Mono, monospace">
                   {p.t}
                 </text>
               ) : null,
@@ -193,7 +193,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
             {/* Hover crosshair */}
             {hovered && hoverIdx !== null && (
               <g>
-                <line x1={getX(hoverIdx)} y1={pad.top} x2={getX(hoverIdx)} y2={pad.top + ih} stroke="#e2e8f0" strokeOpacity="0.35" />
+                <line x1={getX(hoverIdx)} y1={pad.top} x2={getX(hoverIdx)} y2={pad.top + ih} stroke="#242834" strokeOpacity="0.7" />
                 {visibleSeries.map((s) => (
                   <circle key={s.key} cx={getX(hoverIdx)} cy={getY(hovered[s.key])} r="4" fill={s.color} stroke="#020617" strokeWidth="2" />
                 ))}
@@ -207,7 +207,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
               {visibleSeries.map((s) => (
                 <div key={s.key} className="flex items-center gap-1.5">
                   <span className="inline-block h-2 w-2 rounded" style={{ background: s.color }} />
-                  <span className="text-slate-400">{s.label}:</span>
+                  <span className="text-[#94a3b8]">{s.label}:</span>
                   <span className="font-bold text-slate-100">{hovered[s.key].toFixed(1)} kW</span>
                 </div>
               ))}
@@ -215,7 +215,7 @@ export const TelemetryChart: React.FC<TelemetryChartProps> = ({
           )}
         </div>
       )}
-      <p className="mt-2 text-[11px] text-slate-500">Y-axis: kW . hover for exact values . click legend to isolate series</p>
+      <p className="mt-2 text-[11px] text-[#a1a1aa]">Y-axis: kW . hover for exact values . click legend to isolate series</p>
     </section>
   );
 };

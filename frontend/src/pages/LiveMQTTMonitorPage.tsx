@@ -110,22 +110,22 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       {/* Header Bar */}
-      <header className="header-container" style={{ borderRadius: '12px' }}>
+      <header className="header-container" style={{ borderRadius: '6px' }}>
         <div className="header-brand">
           <div className="logo-icon">
-            <Radio size={22} className="text-primary animate-pulse" />
+            <Radio size={20} className="text-primary" />
           </div>
           <div>
             <div className="flex items-center gap-2">
               <h1 className="header-title">LIVE ESP32 MQTT MONITOR</h1>
-              <span className="badge badge-info">PROTOTYPE EDGE INGESTION</span>
+              <span className="badge badge-info">EDGE INGESTION</span>
               <span className="flex items-center gap-1 text-xs text-muted">
                 <span className="live-pulse-dot" />
                 <span>Live Stream</span>
               </span>
             </div>
             <p className="header-subtitle">
-              Public Broker: <strong>broker.hivemq.com:1883</strong> &nbsp;|&nbsp; Topic: <strong>gridwise/telemetry</strong>
+              Public Broker: <strong>broker.hivemq.com:1883</strong> | Topic: <strong>gridwise/telemetry</strong> | Ingestion: Edge Telemetry
             </p>
           </div>
         </div>
@@ -147,11 +147,14 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
       {isOverload && (
         <div className="overload-alert-banner">
           <div className="overload-icon-bubble">
-            <Flame size={30} />
+            <Flame size={26} />
           </div>
           <div className="flex-1">
             <div className="overload-header">
-              <span className="overload-badge">🚨 OVERLOAD ALERT</span>
+              <span className="overload-badge flex items-center gap-1">
+                <AlertTriangle size={13} />
+                OVERLOAD ALERT
+              </span>
               <h2 className="overload-title">
                 CRITICAL TEMPERATURE EXCEEDED: {telemetry.temperature_c.toFixed(1)}°C
               </h2>
@@ -172,7 +175,7 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
       <div className="mqtt-hero-card">
         <div className="mqtt-device-info">
           <div className={`mqtt-icon-bubble ${isHardwareOnline ? 'online' : 'stale'}`}>
-            <Cpu size={26} />
+            <Cpu size={24} />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -183,17 +186,17 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
               </span>
               {isOverload && (
                 <span className="badge badge-overload">
-                  <AlertTriangle size={12} className="mr-1" /> OVERLOAD
+                  <AlertTriangle size={12} className="mr-1" /> OVERLOAD ALERT
                 </span>
               )}
             </div>
             <div className="mqtt-hero-meta">
               <span><Wifi size={13} style={{ display: 'inline', marginRight: '4px' }} /> HiveMQ Cloud Edge</span>
-              <span>•</span>
+              <span>|</span>
               <span>Topic: <code>gridwise/telemetry</code></span>
               {lastReceivedTime && (
                 <>
-                  <span>•</span>
+                  <span>|</span>
                   <span>Last Seen: {lastReceivedTime.toLocaleTimeString()}</span>
                 </>
               )}
@@ -215,17 +218,17 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
                 background: 'var(--bg-subcard)',
                 color: 'var(--text-primary)',
                 fontSize: '0.75rem',
-                borderRadius: '6px',
+                borderRadius: '4px',
                 padding: '4px 8px',
                 border: '1px solid var(--border-color)',
                 marginTop: '4px',
                 cursor: 'pointer',
               }}
             >
-              <option value={100}>⚡ Real-Time (100ms)</option>
-              <option value={250}>⚡ Ultra-Fast (250ms)</option>
-              <option value={500}>⚡ Fast (500ms)</option>
-              <option value={1000}>Standard (1s)</option>
+              <option value={100}>100ms (High Speed)</option>
+              <option value={250}>250ms (Default)</option>
+              <option value={500}>500ms (Balanced)</option>
+              <option value={1000}>1000ms (Standard)</option>
             </select>
           </div>
         </div>
@@ -276,13 +279,13 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
 
           <div className="mqtt-sensor-footer">
             {isOverload ? (
-              <strong style={{ color: '#dc2626' }}>
-                🚨 OVERLOAD ALERT: Temperature exceeds 50.0°C! Severe thermal derating to 10.0 kW in effect.
+              <strong style={{ color: '#ef4444' }}>
+                OVERLOAD ALERT: Temperature exceeds 50.0°C! Severe thermal derating to 10.0 kW in effect.
               </strong>
             ) : telemetry && telemetry.temperature_c > 35 ? (
-              '🔥 Ambient heat derates grid capacity down toward 10 kW.'
+              'Ambient heat derates grid capacity down toward 10 kW.'
             ) : (
-              '✅ Temperature is within nominal baseline operating envelope (≤ 35°C).'
+              'Temperature is within nominal baseline operating envelope (≤ 35°C).'
             )}
           </div>
         </div>
@@ -327,7 +330,7 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
           <div>
             <div className="mqtt-card-header">
               <span className="mqtt-card-title">
-                <CloudRain size={18} style={{ color: '#0284c7' }} />
+                <CloudRain size={18} style={{ color: '#38bdf8' }} />
                 Rain / Precipitation Sensor
               </span>
               <span className={`badge ${telemetry?.rain_status === 'WET' || telemetry?.rain_status === 'RAIN' || telemetry?.rain_detected ? 'badge-danger' : 'badge-success'}`}>
@@ -346,7 +349,7 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
           </div>
 
           <div className="mqtt-sensor-footer">
-            Precipitation Flag: <strong style={{ color: telemetry?.rain_detected ? '#dc2626' : '#16a34a' }}>
+            Precipitation Flag: <strong style={{ color: telemetry?.rain_detected ? '#ef4444' : '#4ade80' }}>
               {telemetry?.rain_detected ? 'PRECIPITATION DETECTED' : 'DRY SENSOR'}
             </strong>
           </div>
@@ -380,22 +383,25 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
         <div className="mqtt-sandbox-card">
           <div>
             <div className="flex items-center gap-2 font-bold text-sm mb-1">
-              <Send size={16} className="text-primary" />
+              <Send size={15} className="text-primary" />
               <span>Interactive Telemetry Dispatcher</span>
             </div>
             <p className="text-xs text-muted mb-3">
-              Click any scenario button to trigger simulated ESP32 MQTT payloads and test live UI updates:
+              Trigger simulated ESP32 MQTT payloads to test live state handling:
             </p>
 
             <div className="dispatch-btn-group">
               {/* Critical Overload Scenario (>50°C) */}
               <button
-                onClick={() => handleSimulateCustom(53.5, 3600, 'DRY', 2.95, 'BRIGHT', '🚨 Critical Overload (53.5°C > 50°C Alert)')}
+                onClick={() => handleSimulateCustom(53.5, 3600, 'DRY', 2.95, 'BRIGHT', 'Critical Overload (53.5°C > 50°C Alert)')}
                 disabled={isSendingSimulated}
                 className="dispatch-btn"
-                style={{ borderColor: '#fca5a5', background: '#fef2f2', color: '#991b1b' }}
+                style={{ borderColor: '#ef4444', background: 'rgba(239, 68, 68, 0.15)', color: '#fca5a5' }}
               >
-                <span>🚨 Overload Alert Test (53.5°C, 2.95V, DRY)</span>
+                <span className="flex items-center gap-1.5">
+                  <Flame size={14} style={{ color: '#ef4444' }} />
+                  Overload Alert Test (53.5°C, 2.95V, DRY)
+                </span>
                 <span className="badge badge-danger">Overload &gt;50°C</span>
               </button>
 
@@ -404,7 +410,10 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
                 disabled={isSendingSimulated}
                 className="dispatch-btn"
               >
-                <span>☀️ Sunny Day (35°C, 2.50V, DRY, BRIGHT)</span>
+                <span className="flex items-center gap-1.5">
+                  <Sun size={14} style={{ color: '#eab308' }} />
+                  Sunny Day (35°C, 2.50V, DRY, BRIGHT)
+                </span>
                 <span className="badge badge-success">Nominal</span>
               </button>
 
@@ -413,7 +422,10 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
                 disabled={isSendingSimulated}
                 className="dispatch-btn"
               >
-                <span>🌧️ Storm / Rain (22°C, 0.40V, WET, DARK)</span>
+                <span className="flex items-center gap-1.5">
+                  <CloudRain size={14} style={{ color: '#38bdf8' }} />
+                  Storm / Rain (22°C, 0.40V, WET, DARK)
+                </span>
                 <span className="badge badge-danger">Rain Alert</span>
               </button>
 
@@ -422,7 +434,10 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
                 disabled={isSendingSimulated}
                 className="dispatch-btn"
               >
-                <span>🔥 Heatwave Derating (45.0°C, 2.80V, DRY)</span>
+                <span className="flex items-center gap-1.5">
+                  <Flame size={14} style={{ color: '#f59e0b' }} />
+                  Heatwave Derating (45.0°C, 2.80V, DRY)
+                </span>
                 <span className="badge badge-warning">Derating</span>
               </button>
             </div>
@@ -444,4 +459,5 @@ export const LiveMQTTMonitorPage: React.FC<LiveMQTTMonitorPageProps> = ({ onNavi
     </div>
   );
 };
+
 

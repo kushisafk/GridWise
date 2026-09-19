@@ -115,51 +115,51 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ warnings }) => {
     <div className="space-y-4">
       {/* Alert KPI Summary Bar */}
       <div className="grid gap-3 md:grid-cols-4">
-        <div className="rounded-md border border-slate-200 bg-white p-3.5 shadow-xs">
+        <div className="rounded-md border border-[#242834] bg-[#141519] p-3.5 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Active Faults & Alerts</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-[#a1a1aa]">Active Faults & Alerts</span>
             <ShieldAlert size={16} className="text-blue-600" />
           </div>
-          <p className="mt-1 font-mono text-2xl font-extrabold text-slate-900">{allEntries.filter((e) => e.status === 'Active').length}</p>
-          <span className="text-xs text-slate-500">Requiring Operator Attention</span>
+          <p className="mt-1 font-mono text-2xl font-extrabold text-[#ededed]">{allEntries.filter((e) => e.status === 'Active').length}</p>
+          <span className="text-xs text-[#a1a1aa]">Requiring Operator Attention</span>
         </div>
 
-        <div className="rounded-md border border-red-200 bg-red-50/50 p-3.5 shadow-xs">
+        <div className="rounded-md border border-red-800 bg-red-950/30 p-3.5 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-red-700">Critical Faults</span>
-            <OctagonX size={16} className="text-red-600" />
+            <span className="text-xs font-bold uppercase tracking-wider text-red-400">Critical Faults</span>
+            <OctagonX size={16} className="text-red-400" />
           </div>
-          <p className="mt-1 font-mono text-2xl font-extrabold text-red-600">{criticalCount}</p>
-          <span className="text-xs text-red-700 font-semibold">Immediate Action Required</span>
+          <p className="mt-1 font-mono text-2xl font-extrabold text-red-400">{criticalCount}</p>
+          <span className="text-xs text-red-400 font-semibold">Immediate Action Required</span>
         </div>
 
-        <div className="rounded-md border border-amber-200 bg-amber-50/50 p-3.5 shadow-xs">
+        <div className="rounded-md border border-amber-800 bg-amber-950/30 p-3.5 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-800">Warnings</span>
-            <AlertTriangle size={16} className="text-amber-600" />
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-400">Warnings</span>
+            <AlertTriangle size={16} className="text-amber-400" />
           </div>
-          <p className="mt-1 font-mono text-2xl font-extrabold text-amber-700">{warningCount}</p>
-          <span className="text-xs text-amber-800 font-semibold">Grid Constraints Active</span>
+          <p className="mt-1 font-mono text-2xl font-extrabold text-amber-400">{warningCount}</p>
+          <span className="text-xs text-amber-400 font-semibold">Grid Constraints Active</span>
         </div>
 
-        <div className="rounded-md border border-slate-200 bg-white p-3.5 shadow-xs">
+        <div className="rounded-md border border-[#242834] bg-[#141519] p-3.5 shadow-xs">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Acknowledged</span>
-            <CheckCircle2 size={16} className="text-emerald-600" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#a1a1aa]">Acknowledged</span>
+            <CheckCircle2 size={16} className="text-emerald-400" />
           </div>
-          <p className="mt-1 font-mono text-2xl font-extrabold text-slate-900">
+          <p className="mt-1 font-mono text-2xl font-extrabold text-[#ededed]">
             {allEntries.filter((e) => e.status === 'Acknowledged').length}
           </p>
-          <span className="text-xs text-slate-500">Logged & Monitored</span>
+          <span className="text-xs text-[#a1a1aa]">Logged & Monitored</span>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-slate-200 bg-white p-3 shadow-xs">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-[#242834] bg-[#141519] p-3 shadow-xs">
         <div className="flex items-center gap-2">
-          <Filter size={15} className="text-slate-400" />
-          <span className="text-xs font-bold uppercase text-slate-700">Severity Filter:</span>
-          <div className="flex rounded border border-slate-200 bg-slate-50 p-0.5">
+          <Filter size={15} className="text-[#94a3b8]" />
+          <span className="text-xs font-bold uppercase text-[#d4d4d8]">Severity Filter:</span>
+          <div className="flex rounded border border-[#242834] bg-[#0F1012] p-0.5">
             {(['all', 'critical', 'warning', 'info'] as const).map((sev) => (
               <button
                 key={sev}
@@ -170,8 +170,8 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ warnings }) => {
                       ? 'bg-red-600 text-white'
                       : sev === 'warning'
                       ? 'bg-amber-600 text-white'
-                      : 'bg-blue-600 text-white'
-                    : 'text-slate-600 hover:text-slate-900'
+                      : 'bg-[#2563eb] text-white'
+                    : 'text-[#a1a1aa] hover:text-[#ffffff]'
                 }`}
               >
                 {sev}
@@ -181,14 +181,14 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ warnings }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 rounded border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs">
-            <Search size={14} className="text-slate-400" />
+          <div className="flex items-center gap-1.5 rounded border border-[#242834] bg-[#0F1012] px-2.5 py-1 text-xs">
+            <Search size={14} className="text-[#94a3b8]" />
             <input
               type="text"
               placeholder="Search alert ID / node / event..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-48 bg-transparent text-xs text-slate-900 focus:outline-none"
+              className="w-48 bg-transparent text-xs text-[#ededed] focus:outline-none"
             />
           </div>
           <button
@@ -196,7 +196,7 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ warnings }) => {
               allEntries.forEach((e) => toggleAck(e.id));
               alert('All active alerts acknowledged.');
             }}
-            className="rounded border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700 hover:bg-slate-50"
+            className="rounded border border-[#242834] bg-[#141519] px-3 py-1 text-xs font-bold text-[#d4d4d8] hover:bg-[#0C0D0F]"
           >
             Ack All Active
           </button>
@@ -204,15 +204,15 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ warnings }) => {
       </div>
 
       {/* Alert & Fault History Table */}
-      <div className="rounded-md border border-slate-200 bg-white p-4 shadow-xs">
-        <h3 className="flex items-center gap-2 text-sm font-extrabold text-slate-900 mb-3">
+      <div className="rounded-md border border-[#242834] bg-[#141519] p-4 shadow-xs">
+        <h3 className="flex items-center gap-2 text-sm font-extrabold text-[#ededed] mb-3">
           <AlertTriangle size={16} className="text-blue-600" /> Operational Alert & Fault History Log ({filteredEntries.length})
         </h3>
 
         <div className="overflow-x-auto slim-scroll">
           <table className="w-full border-collapse text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-50 text-[11px] font-extrabold uppercase text-slate-600">
+              <tr className="border-b border-[#242834] bg-[#0F1012] text-[11px] font-extrabold uppercase text-[#a1a1aa]">
                 <th className="px-3 py-2.5">Timestamp</th>
                 <th className="px-3 py-2.5">Alert ID</th>
                 <th className="px-3 py-2.5">Asset / Node</th>
@@ -229,39 +229,39 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ warnings }) => {
                 return (
                   <tr
                     key={e.id}
-                    className={`border-b border-slate-100 hover:bg-slate-50 ${
-                      e.severity === 'critical' ? 'bg-red-50/30' : e.severity === 'warning' ? 'bg-amber-50/20' : ''
+                    className={`border-b border-[#242834] hover:bg-[#0C0D0F] ${
+                      e.severity === 'critical' ? 'bg-red-950/30' : e.severity === 'warning' ? 'bg-amber-950/20' : ''
                     }`}
                   >
-                    <td className="px-3 py-2.5 font-mono text-slate-600">{e.timestamp}</td>
-                    <td className="px-3 py-2.5 font-mono font-bold text-slate-900">{e.id}</td>
-                    <td className="px-3 py-2.5 font-bold text-slate-800">
-                      {e.node} <span className="font-normal text-slate-500">({e.substation})</span>
+                    <td className="px-3 py-2.5 font-mono text-[#a1a1aa]">{e.timestamp}</td>
+                    <td className="px-3 py-2.5 font-mono font-bold text-[#ededed]">{e.id}</td>
+                    <td className="px-3 py-2.5 font-bold text-[#e4e4e7]">
+                      {e.node} <span className="font-normal text-[#a1a1aa]">({e.substation})</span>
                     </td>
                     <td className="px-3 py-2.5">
                       <span
                         className={`inline-flex items-center gap-1 rounded border px-2 py-0.5 text-[10px] font-extrabold uppercase ${
                           e.severity === 'critical'
-                            ? 'border-red-300 bg-red-100 text-red-700'
+                            ? 'border-red-800 bg-red-950/40 text-red-400'
                             : e.severity === 'warning'
-                            ? 'border-amber-300 bg-amber-100 text-amber-800'
-                            : 'border-blue-300 bg-blue-50 text-blue-700'
+                            ? 'border-amber-800 bg-amber-950/40 text-amber-400'
+                            : 'border-blue-800 bg-blue-950/40 text-blue-400'
                         }`}
                       >
                         {e.severity === 'critical' ? <OctagonX size={10} /> : <AlertTriangle size={10} />}
                         {e.severity}
                       </span>
                     </td>
-                    <td className="px-3 py-2.5 font-semibold text-slate-900">{e.event}</td>
-                    <td className="px-3 py-2.5 text-slate-600">{e.impact}</td>
+                    <td className="px-3 py-2.5 font-semibold text-[#ededed]">{e.event}</td>
+                    <td className="px-3 py-2.5 text-[#a1a1aa]">{e.impact}</td>
                     <td className="px-3 py-2.5">
                       <span
                         className={`rounded px-2 py-0.5 font-bold ${
                           isAcked
-                            ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                            ? 'bg-blue-950/40 text-blue-400 border border-blue-800'
                             : e.status === 'Cleared'
-                            ? 'bg-slate-100 text-slate-600'
-                            : 'bg-amber-100 text-amber-800 border border-amber-300'
+                            ? 'bg-[#0F1012] text-[#a1a1aa]'
+                            : 'bg-amber-950/40 text-amber-400 border border-amber-800'
                         }`}
                       >
                         {isAcked ? 'Acknowledged' : e.status}
@@ -273,15 +273,15 @@ export const AlertsPage: React.FC<AlertsPageProps> = ({ warnings }) => {
                           onClick={() => toggleAck(e.id)}
                           className={`rounded border px-2 py-1 font-bold ${
                             isAcked
-                              ? 'border-blue-300 bg-blue-50 text-blue-700'
-                              : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+                              ? 'border-blue-800 bg-blue-950/40 text-blue-400'
+                              : 'border-[#242834] bg-[#141519] text-[#d4d4d8] hover:bg-[#0C0D0F]'
                           }`}
                         >
                           <CheckCircle2 size={12} className="inline mr-1" /> {isAcked ? 'Acked' : 'Ack'}
                         </button>
                         <button
                           onClick={() => alert(`Inspecting asset ${e.node} in SCADA topology view.`)}
-                          className="rounded border border-slate-300 bg-white px-2 py-1 font-bold text-slate-700 hover:bg-slate-50"
+                          className="rounded border border-[#242834] bg-[#141519] px-2 py-1 font-bold text-[#d4d4d8] hover:bg-[#0C0D0F]"
                         >
                           <Eye size={12} className="inline mr-1" /> Inspect
                         </button>

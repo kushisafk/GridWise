@@ -4,30 +4,28 @@
 
 @layer base {
   :root {
-    --bg-main: #f4f6f8; /* Crisp light gray background */
-    --bg-card: #ffffff; /* Solid white card surface */
-    --bg-subcard: #f8fafc; /* Slate light grouped section surface */
-    --border-color: #e2e8f0; /* Crisp neutral light border */
-    --border-subtle: #f1f5f9;
-    --text-primary: #0f172a; /* Deep slate primary text for maximum readability */
-    --text-muted: #64748b; /* Muted slate text */
+    --bg-main: #0C0D0F; /* Secondary background color */
+    --bg-card: #141519; /* Primary surface color */
+    --bg-subcard: #0F1012; /* Inside the boxes color */
+    --border-color: #242834; /* Crisp neutral dark border */
+    --border-grid: #272a34; /* Grid line border */
+    --border-subtle: #1c202a;
+    --text-primary: #ededed; /* Crisp light primary text */
+    --text-muted: #a1a1aa; /* Muted technical slate text */
+    --text-dim: #71717a; /* Secondary dim text */
     --primary: #2563eb; /* Clean professional blue */
     --primary-hover: #1d4ed8;
-    --primary-subtle: rgba(37, 99, 235, 0.08);
-    --success: #16a34a; /* Operational green for light bg */
-    --success-subtle: rgba(22, 163, 74, 0.1);
-    --warning: #d97706; /* Operational amber for light bg */
-    --warning-subtle: rgba(217, 119, 6, 0.1);
-    --danger: #dc2626; /* Operational red for light bg */
-    --danger-subtle: rgba(220, 38, 38, 0.1);
-    --info: #0284c7; /* Operational cyan info */
-    --info-subtle: rgba(2, 132, 199, 0.1);
-    color-scheme: light;
+    --primary-subtle: rgba(37, 99, 235, 0.14);
+    --success: #4ade80; /* Operational green */
+    --warning: #fbbf24; /* Operational amber */
+    --danger: #f87171; /* Operational red */
+    --info: #38bdf8; /* Operational cyan info */
+    color-scheme: dark;
   }
 
   html {
-    @apply bg-[#f4f6f8] text-slate-900;
-    background-color: #f4f6f8;
+    @apply bg-[#0C0D0F] text-slate-100;
+    background-color: #0C0D0F;
   }
 }
 
@@ -38,9 +36,9 @@
 }
 
 body {
-  background-color: #f4f6f8;
+  background-color: #0C0D0F;
   color: var(--text-primary);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, Menlo, monospace, 'Inter', -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   line-height: 1.5;
   min-height: 100vh;
@@ -50,7 +48,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f4f6f8;
+  background-color: #0C0D0F;
 }
 
 .dashboard-main {
@@ -75,7 +73,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 40;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
 }
 
 .header-brand {
@@ -171,15 +169,15 @@ body {
 }
 
 .mode-simulation {
-  background-color: #dbeafe;
-  color: #1d4ed8;
-  border: 1px solid #bfdbfe;
+  background-color: rgba(37, 99, 235, 0.14);
+  color: #60a5fa;
+  border: 1px solid rgba(37, 99, 235, 0.35);
 }
 
 .mode-hardware {
-  background-color: #dcfce7;
-  color: #15803d;
-  border: 1px solid #86efac;
+  background-color: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .header-actions {
@@ -193,9 +191,9 @@ body {
 .section-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 1.15rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .section-header {
@@ -218,7 +216,7 @@ body {
 .subcard {
   background-color: var(--bg-subcard);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 0.9rem;
 }
 
@@ -232,18 +230,18 @@ body {
 .kpi-card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 0.9rem;
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .kpi-icon {
   width: 38px;
   height: 38px;
-  border-radius: 6px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -288,7 +286,7 @@ body {
 .progress-bar-bg {
   width: 100%;
   height: 6px;
-  background-color: #e2e8f0;
+  background-color: #0F1012;
   border-radius: 3px;
   overflow: hidden;
 }
@@ -305,24 +303,24 @@ body {
 .progress-danger { background-color: var(--danger); }
 .progress-info { background-color: var(--info); }
 
-/* Badges with high-contrast text on light backgrounds */
+/* Badges with high-contrast text on dark backgrounds */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: 2px 6px;
+  border-radius: 3px;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
-.badge-success { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
-.badge-warning { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
-.badge-danger { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
-.badge-info { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
-.badge-neutral { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+.badge-success { background: rgba(34, 197, 94, 0.14); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.35); }
+.badge-warning { background: rgba(245, 158, 11, 0.14); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.35); }
+.badge-danger { background: rgba(239, 68, 68, 0.14); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.35); }
+.badge-info { background: rgba(2, 132, 199, 0.14); color: #38bdf8; border: 1px solid rgba(2, 132, 199, 0.35); }
+.badge-neutral { background: rgba(148, 163, 184, 0.12); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.2); }
 
-/* Dynamic Responsive Buttons */
+/* Technical Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -331,7 +329,7 @@ body {
   font-size: clamp(0.725rem, 1.2vw, 0.8rem);
   font-weight: 600;
   padding: clamp(0.35rem, 1vw, 0.45rem) clamp(0.6rem, 1.5vw, 0.9rem);
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   border: 1px solid transparent;
   transition: all 0.15s ease;
@@ -341,14 +339,14 @@ body {
 .btn-primary { background-color: var(--primary); color: white; border-color: #1d4ed8; }
 .btn-primary:hover:not(:disabled) { background-color: var(--primary-hover); }
 
-.btn-secondary { background-color: #ffffff; color: #334155; border-color: #cbd5e1; }
-.btn-secondary:hover:not(:disabled) { background-color: #f8fafc; border-color: #94a3b8; color: #0f172a; }
+.btn-secondary { background-color: var(--bg-subcard); color: var(--text-primary); border-color: var(--border-color); }
+.btn-secondary:hover:not(:disabled) { background-color: #141519; border-color: #475569; }
 
 .btn-accent { background-color: #059669; color: white; }
 .btn-accent:hover:not(:disabled) { background-color: #047857; }
 
 .btn-sm {
-  padding: clamp(0.25rem, 0.8vw, 0.35rem) clamp(0.45rem, 1.2vw, 0.65rem);
+  padding: clamp(0.25rem, 0.8vw, 0.3rem) clamp(0.45rem, 1.2vw, 0.65rem);
   font-size: clamp(0.675rem, 1vw, 0.75rem);
 }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -398,22 +396,22 @@ body {
 }
 
 .rate-active {
-  background-color: #dcfce7;
-  color: #15803d;
-  border: 1px solid #86efac;
+  background-color: rgba(34, 197, 94, 0.14);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
 .rate-inactive {
-  background-color: #f1f5f9;
+  background-color: rgba(148, 163, 184, 0.1);
   color: #64748b;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.15);
 }
 
 /* Stat Box inside Subcards */
 .stat-box {
   background-color: var(--bg-subcard);
   padding: 0.5rem 0.65rem;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid var(--border-color);
 }
 
@@ -434,13 +432,13 @@ body {
 .status-pill {
   font-size: 0.7rem;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 1px 6px;
+  border-radius: 3px;
 }
 
-.status-pill-success { background: #dcfce7; color: #15803d; }
-.status-pill-warning { background: #fef3c7; color: #b45309; }
-.status-pill-danger { background: #fee2e2; color: #b91c1c; }
+.status-pill-success { background: rgba(34, 197, 94, 0.14); color: #4ade80; }
+.status-pill-warning { background: rgba(245, 158, 11, 0.14); color: #fbbf24; }
+.status-pill-danger { background: rgba(239, 68, 68, 0.14); color: #f87171; }
 
 .micro-note {
   font-size: 0.675rem;
@@ -464,7 +462,7 @@ body {
 .flow-badge {
   background-color: var(--bg-subcard);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 0.45rem 0.65rem;
   font-size: 0.75rem;
   display: flex;
@@ -485,26 +483,26 @@ body {
   align-items: flex-start;
   gap: 0.65rem;
   padding: 0.6rem 0.85rem;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 0.8rem;
 }
 
 .warning-critical {
-  background-color: #fef2f2;
-  border: 1px solid #fca5a5;
-  color: #991b1b;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #f87171;
 }
 
 .warning-alert {
-  background-color: #fffbeb;
-  border: 1px solid #fcd34d;
-  color: #92400e;
+  background-color: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
 }
 
 .warning-info {
-  background-color: #f0f9ff;
-  border: 1px solid #93c5fd;
-  color: #075985;
+  background-color: rgba(2, 132, 199, 0.1);
+  border: 1px solid rgba(2, 132, 199, 0.35);
+  color: #38bdf8;
 }
 
 .warning-code {
@@ -532,7 +530,7 @@ body {
 .loading-spinner {
   width: 36px;
   height: 36px;
-  border: 3px solid #cbd5e1;
+  border: 3px solid #242834;
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -543,8 +541,8 @@ body {
 }
 
 .error-banner {
-  background-color: #fef2f2;
-  border: 1px solid #fca5a5;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
   border-radius: 6px;
   padding: 1rem;
   margin: 1.5rem auto;
@@ -552,7 +550,7 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: #991b1b;
+  color: #f87171;
 }
 
 .dashboard-footer {
@@ -608,8 +606,8 @@ body {
    Top Global Navigation & Navigation Tabs
    ========================================================================== */
 .top-navbar {
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
+  background: #141519;
+  border-bottom: 1px solid #242834;
   padding: 0.65rem 1.5rem;
   display: flex;
   align-items: center;
@@ -617,7 +615,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .nav-brand-tag {
@@ -625,7 +622,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #0f172a;
+  color: #f1f5f9;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -635,10 +632,10 @@ body {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  background: #f1f5f9;
+  background: #0F1012;
   padding: 4px;
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #242834;
 }
 
 .nav-tab {
@@ -649,7 +646,7 @@ body {
   font-weight: 600;
   padding: 0.45rem 0.95rem;
   border-radius: 6px;
-  color: #64748b;
+  color: #94a3b8;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -657,32 +654,32 @@ body {
 }
 
 .nav-tab:hover {
-  color: #0f172a;
-  background: rgba(0, 0, 0, 0.04);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .nav-tab-active {
   background: #2563eb;
   color: #ffffff;
-  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .nav-tab-mqtt.nav-tab-active {
   background: #0284c7;
   color: #ffffff;
-  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* ==========================================================================
    Live MQTT Monitor Page Styles
    ========================================================================== */
 .mqtt-hero-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  background: #141519;
+  border: 1px solid #242834;
+  border-radius: 8px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.25rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -697,9 +694,9 @@ body {
 }
 
 .mqtt-icon-bubble {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -707,15 +704,15 @@ body {
 }
 
 .mqtt-icon-bubble.online {
-  background: #dcfce7;
-  color: #16a34a;
-  border: 1px solid #86efac;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .mqtt-icon-bubble.stale {
-  background: #fef3c7;
-  color: #d97706;
-  border: 1px solid #fcd34d;
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .mqtt-hero-title {
@@ -724,12 +721,12 @@ body {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .mqtt-hero-meta {
   font-size: 0.775rem;
-  color: #64748b;
+  color: #cbd5e1;
   margin-top: 0.25rem;
   display: flex;
   align-items: center;
@@ -737,10 +734,10 @@ body {
 }
 
 .mqtt-hero-meta code {
-  background: #f1f5f9;
+  background: rgba(0, 0, 0, 0.3);
   padding: 2px 6px;
   border-radius: 4px;
-  color: #0284c7;
+  color: #38bdf8;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.725rem;
 }
@@ -759,7 +756,7 @@ body {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #64748b;
+  color: #94a3b8;
   display: block;
 }
 
@@ -767,7 +764,7 @@ body {
   font-size: 1.4rem;
   font-weight: 800;
   font-family: 'JetBrains Mono', monospace;
-  color: #0284c7;
+  color: #38bdf8;
 }
 
 /* Sensory Grid & Cards */
@@ -779,20 +776,19 @@ body {
 }
 
 .mqtt-sensor-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  background: #0F1012;
+  border: 1px solid #242834;
+  border-radius: 8px;
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.2s ease;
 }
 
 .mqtt-sensor-card:hover {
   border-color: rgba(37, 99, 235, 0.45);
-  transform: translateY(-2px);
 }
 
 .mqtt-card-header {
@@ -851,22 +847,22 @@ body {
 }
 
 .mqtt-terminal-window {
-  background: #0f172a;
-  border: 1px solid #334155;
-  border-radius: 10px;
+  background: #0F1012;
+  border: 1px solid #242834;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
 }
 
 .mqtt-terminal-bar {
-  background: #1e293b;
+  background: #141519;
   padding: 0.5rem 0.85rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #242834;
 }
 
 .terminal-dots {
@@ -887,7 +883,7 @@ body {
 .terminal-title {
   font-size: 0.7rem;
   font-family: 'JetBrains Mono', monospace;
-  color: #94a3b8;
+  color: var(--text-muted);
 }
 
 .mqtt-terminal-content {
@@ -903,9 +899,9 @@ body {
 }
 
 .mqtt-sandbox-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
+  background: #141519;
+  border: 1px solid #242834;
+  border-radius: 8px;
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
@@ -924,9 +920,9 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0.65rem 0.95rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: var(--bg-subcard);
+  border-radius: 6px;
+  border: 1px solid #242834;
+  background: #0F1012;
   color: var(--text-primary);
   font-size: 0.775rem;
   font-weight: 600;
@@ -935,9 +931,9 @@ body {
 }
 
 .dispatch-btn:hover:not(:disabled) {
-  background: #dbeafe;
+  background: rgba(37, 99, 235, 0.15);
   border-color: var(--primary);
-  color: #1d4ed8;
+  color: #ffffff;
 }
 
 .dispatch-btn:disabled {
@@ -946,23 +942,23 @@ body {
 }
 
 .dispatch-toast {
-  background: #dcfce7;
-  border: 1px solid #86efac;
-  color: #15803d;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
   padding: 0.5rem 0.75rem;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 0.725rem;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .cli-snippet-box {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
+  background: #0F1012;
+  border: 1px solid #242834;
+  border-radius: 4px;
   padding: 0.6rem 0.75rem;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.675rem;
-  color: #334155;
+  color: #94a3b8;
   overflow-x: auto;
   user-select: all;
 }
@@ -971,45 +967,27 @@ body {
    Critical Overload Alert Banner & Styles (>50°C)
    ========================================================================== */
 .overload-alert-banner {
-  background: #fef2f2;
-  border: 2px solid #ef4444;
-  border-radius: 12px;
+  background: #181114;
+  border: 1px solid #ef4444;
+  border-radius: 6px;
   padding: 1.1rem 1.4rem;
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.15);
-  animation: overload-pulse 2s infinite ease-in-out;
-}
-
-@keyframes overload-pulse {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(239, 68, 68, 0.15);
-    border-color: #ef4444;
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
-    border-color: #dc2626;
-  }
+  box-shadow: 0 2px 12px rgba(239, 68, 68, 0.2);
 }
 
 .overload-icon-bubble {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  background: #fee2e2;
-  border: 1px solid #fca5a5;
-  color: #dc2626;
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background: rgba(239, 68, 68, 0.3);
+  border: 1px solid rgba(239, 68, 68, 0.6);
+  color: #fca5a5;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  animation: bounce 1.2s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
 }
 
 .overload-header {
@@ -1022,23 +1000,23 @@ body {
   font-size: 1.15rem;
   font-weight: 900;
   letter-spacing: 0.04em;
-  color: #991b1b;
+  color: #ffffff;
 }
 
 .overload-badge {
-  background: #dc2626;
+  background: #ef4444;
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 800;
   padding: 3px 8px;
-  border-radius: 6px;
+  border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .overload-desc {
   font-size: 0.85rem;
-  color: #7f1d1d;
+  color: #fee2e2;
   margin-top: 0.25rem;
   line-height: 1.4;
 }
@@ -1046,47 +1024,33 @@ body {
 /* Sensory Card in Overload State */
 .mqtt-sensor-card.overload-card-active {
   border-color: #ef4444;
-  background: #fef2f2;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.12);
 }
 
 .badge-overload {
-  background: #fee2e2;
+  background: rgba(239, 68, 68, 0.25);
   border: 1px solid #ef4444;
-  color: #991b1b;
+  color: #fca5a5;
   font-weight: 800;
-  animation: pulse-red 1.5s infinite;
-}
-
-@keyframes pulse-red {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
 }
 
 .live-pulse-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #16a34a;
+  background-color: #10b981;
   display: inline-block;
-  box-shadow: 0 0 6px #16a34a;
-  animation: live-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes live-ping {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+  box-shadow: 0 0 8px #10b981;
 }
 
 /* ==========================================================================
-   Terminal SCADA Console UI (Light Professional Grid)
+   Terminal SCADA Console UI
    ========================================================================== */
 .scada-container {
   min-height: auto;
   background-color: transparent;
-  color: #0f172a;
-  font-family: 'JetBrains Mono', 'SF Mono', 'Roboto Mono', 'Fira Code', Consolas, Menlo, monospace;
+  color: #ededed;
+  font-family: 'JetBrains Mono', 'SF Mono', 'Roboto Mono', Consolas, monospace;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -1097,11 +1061,11 @@ body {
 .scada-card {
   width: 100%;
   max-width: 680px;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 14px;
+  background: #141519;
+  border: 1px solid #242834;
+  border-radius: 8px;
   padding: 2rem 2.2rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -1113,14 +1077,14 @@ body {
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #0f172a;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .scada-divider {
   width: 100%;
   height: 1px;
-  background-color: #e2e8f0;
+  background-color: #242834;
   margin-top: 0.5rem;
 }
 
@@ -1135,26 +1099,26 @@ body {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #334155;
+  color: #d4d4d8;
 }
 
 .scada-box-border {
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  background: #f8fafc;
+  border: 1px solid #242834;
+  border-radius: 4px;
+  background: #0F1012;
   overflow: hidden;
 }
 
 .scada-grid-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  divide-x: 1px solid #cbd5e1;
+  divide-x: 1px solid #242834;
 }
 
 .scada-grid-cell {
   padding: 0.65rem 0.75rem;
-  border-right: 1px solid #cbd5e1;
-  border-bottom: 1px solid #cbd5e1;
+  border-right: 1px solid #242834;
+  border-bottom: 1px solid #242834;
 }
 
 .scada-grid-cell:last-child {
@@ -1163,7 +1127,7 @@ body {
 
 .scada-cell-header {
   font-size: 0.7rem;
-  color: #64748b;
+  color: #a1a1aa;
   margin-bottom: 0.35rem;
   white-space: nowrap;
 }
@@ -1171,16 +1135,16 @@ body {
 .scada-cell-val {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
   white-space: nowrap;
 }
 
 .scada-mix-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  background: #f8fafc;
+  border: 1px solid #242834;
+  border-radius: 4px;
+  background: #0F1012;
 }
 
 .scada-mix-col {
@@ -1188,13 +1152,13 @@ body {
 }
 
 .scada-mix-col:first-child {
-  border-right: 1px solid #cbd5e1;
+  border-right: 1px solid #242834;
 }
 
 .scada-mix-header {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -1204,12 +1168,12 @@ body {
 .scada-mix-primary {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .scada-mix-secondary {
   font-size: 0.725rem;
-  color: #64748b;
+  color: #a1a1aa;
   margin-top: 0.2rem;
 }
 
@@ -1217,20 +1181,20 @@ body {
 .scada-table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  background: #ffffff;
+  border: 1px solid #242834;
+  border-radius: 4px;
+  background: #0F1012;
   font-size: 0.775rem;
 }
 
 .scada-table th {
   padding: 0.5rem 0.65rem;
   text-align: left;
-  color: #475569;
+  color: #a1a1aa;
   font-weight: 700;
-  background: #f1f5f9;
-  border-bottom: 1px solid #cbd5e1;
-  border-right: 1px solid #cbd5e1;
+  background: #141519;
+  border-bottom: 1px solid #242834;
+  border-right: 1px solid #242834;
 }
 
 .scada-table th:last-child {
@@ -1239,9 +1203,9 @@ body {
 
 .scada-table td {
   padding: 0.5rem 0.65rem;
-  color: #0f172a;
-  border-bottom: 1px solid #e2e8f0;
-  border-right: 1px solid #cbd5e1;
+  color: #ededed;
+  border-bottom: 1px solid #242834;
+  border-right: 1px solid #242834;
 }
 
 .scada-table td:last-child {
@@ -1270,31 +1234,31 @@ body {
   font-family: monospace;
   letter-spacing: -0.05em;
   font-size: 1.1rem;
-  color: #0f172a;
+  color: #ffffff;
   user-select: none;
 }
 
 .scada-meter-pct {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .scada-metric-line {
   font-size: 0.775rem;
-  color: #334155;
+  color: #e4e4e7;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .scada-metric-label {
-  color: #64748b;
+  color: #a1a1aa;
 }
 
 .scada-metric-value {
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
 }
 
 /* Warnings */
@@ -1303,38 +1267,38 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.775rem;
-  color: #b45309;
+  color: #fbbf24;
   padding: 0.2rem 0;
 }
 
 .scada-warning-critical {
-  color: #dc2626;
+  color: #f87171;
   font-weight: 700;
 }
 
 .scada-warning-nominal {
-  color: #16a34a;
+  color: #4ade80;
 }
 
 /* Interactive Footer */
 .scada-footer-toggle {
-  background: #f8fafc;
-  border: 1px dashed #cbd5e1;
-  border-radius: 6px;
+  background: #0F1012;
+  border: 1px dashed #242834;
+  border-radius: 4px;
   padding: 0.65rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #475569;
+  color: #d4d4d8;
   font-size: 0.775rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .scada-footer-toggle:hover {
-  background: #f1f5f9;
-  border-color: #94a3b8;
-  color: #0f172a;
+  background: #141519;
+  border-color: #475569;
+  color: #ffffff;
 }
 
 .scada-controls-row {
@@ -1344,14 +1308,14 @@ body {
   justify-content: space-between;
   gap: 0.75rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid #242834;
 }
 
 .scada-btn {
-  background: #ffffff;
-  color: #334155;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  background: #0F1012;
+  color: #ededed;
+  border: 1px solid #242834;
+  border-radius: 4px;
   padding: 0.4rem 0.8rem;
   font-size: 0.725rem;
   font-family: inherit;
@@ -1364,15 +1328,15 @@ body {
 }
 
 .scada-btn:hover:not(:disabled) {
-  background: #f8fafc;
-  color: #0f172a;
-  border-color: #94a3b8;
+  background: #141519;
+  color: #ffffff;
+  border-color: #475569;
 }
 
 .scada-btn-primary {
   background: #2563eb;
   color: #ffffff;
-  border-color: #1d4ed8;
+  border-color: #3b82f6;
 }
 
 .scada-btn-primary:hover:not(:disabled) {

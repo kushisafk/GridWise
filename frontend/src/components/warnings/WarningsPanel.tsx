@@ -9,8 +9,8 @@ interface WarningsPanelProps {
 export const WarningsPanel: React.FC<WarningsPanelProps> = ({ warnings }) => {
   if (warnings.length === 0) {
     return (
-      <div className="section-card border-emerald-200 dark:border-emerald-900 bg-emerald-50/50 dark:bg-emerald-950/20">
-        <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+      <div className="section-card bg-emerald-950/20 border-emerald-800">
+        <div className="flex items-center gap-2 text-emerald-400">
           <ShieldCheck size={18} />
           <span className="font-semibold text-sm">System Operational: No Active Safety or Constraint Warnings</span>
         </div>
@@ -21,7 +21,7 @@ export const WarningsPanel: React.FC<WarningsPanelProps> = ({ warnings }) => {
   return (
     <div className="section-card">
       <div className="section-header mb-2">
-        <h2 className="section-title text-amber-600 dark:text-amber-400">
+        <h2 className="section-title text-amber-400">
           <AlertTriangle size={18} />
           Active System Alerts & Constraint Notifications ({warnings.length})
         </h2>

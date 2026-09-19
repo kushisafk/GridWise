@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { useSystemState } from '../hooks/useSystemState';
 import { getBaseUrl } from '../services/api';
 import {
+  AlertTriangle,
   ArrowDown,
+  Battery,
+  CheckCircle,
   ChevronUp,
   Flame,
   Play,
   Radio,
   RefreshCw,
+  Sun,
   Zap,
 } from 'lucide-react';
 import { RealtimeCharts } from '../components/charts/RealtimeCharts';
@@ -45,7 +49,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
           <h2 style={{ fontSize: '0.9rem', fontWeight: 800, marginTop: '1rem' }}>
             CONNECTING TO SMART EV CHARGING SCADA...
           </h2>
-          <p style={{ fontSize: '0.75rem', color: '#64748b' }}>
+          <p style={{ fontSize: '0.75rem', color: '#a1a1aa' }}>
             Streaming live telemetry from backend /api/v1...
           </p>
         </div>
@@ -58,14 +62,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
     return (
       <div className="scada-container">
         <div className="scada-card">
-          <h1 className="scada-main-title" style={{ color: '#dc2626' }}>
+          <h1 className="scada-main-title" style={{ color: '#f87171' }}>
             SCADA CONNECTION ERROR
           </h1>
           <div className="scada-divider" />
-          <p style={{ fontSize: '0.8rem', color: '#991b1b' }}>
+          <p style={{ fontSize: '0.8rem', color: '#fca5a5' }}>
             Unable to establish telemetry stream to <code>{getBaseUrl()}</code>.
           </p>
-          <p style={{ fontSize: '0.725rem', color: '#64748b' }}>Error: {error}</p>
+          <p style={{ fontSize: '0.725rem', color: '#a1a1aa' }}>Error: {error}</p>
           <button onClick={refresh} className="scada-btn scada-btn-primary" style={{ marginTop: '1rem' }}>
             <RefreshCw size={13} /> Retry Connection
           </button>
@@ -133,20 +137,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
         {isOverload && (
           <div
             style={{
-              background: '#fef2f2',
-              border: '2px solid #ef4444',
-              borderRadius: '8px',
+              background: '#181114',
+              border: '1px solid #ef4444',
+              borderRadius: '6px',
               padding: '0.85rem 1rem',
               display: 'flex',
               alignItems: 'center',
               gap: '0.75rem',
-              color: '#991b1b',
+              color: '#fca5a5',
             }}
           >
-            <Flame size={24} style={{ color: '#dc2626', flexShrink: 0 }} className="animate-bounce" />
+            <Flame size={24} style={{ color: '#ef4444', flexShrink: 0 }} />
             <div style={{ flex: 1, fontSize: '0.775rem' }}>
-              <strong style={{ color: '#991b1b', display: 'block', fontSize: '0.85rem' }}>
-                🚨 OVERLOAD ALERT: Temperature {ambientTempC.toFixed(1)}°C &gt; 50.0°C!
+              <strong style={{ color: '#ffffff', display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem' }}>
+                <AlertTriangle size={14} style={{ color: '#ef4444' }} />
+                OVERLOAD ALERT: Temperature {ambientTempC.toFixed(1)}°C &gt; 50.0°C!
               </strong>
               Grid transformer at severe risk of thermal damage. Capacity derated to 10.0 kW. Emergency curtailment active.
             </div>
@@ -174,7 +179,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
                 <div className="scada-cell-header">Utilized</div>
                 <div
                   className="scada-cell-val"
-                  style={{ color: utilizationPct > 90 ? '#dc2626' : utilizationPct > 75 ? '#d97706' : '#0f172a' }}
+                  style={{ color: utilizationPct > 90 ? '#f87171' : utilizationPct > 75 ? '#fbbf24' : '#ffffff' }}
                 >
                   {`${utilizationPct.toFixed(1)}%`}
                 </div>
@@ -190,7 +195,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
             {/* Solar Column */}
             <div className="scada-mix-col">
               <div className="scada-mix-header">
-                <span>☀</span>
+                <Sun size={14} style={{ color: '#eab308' }} />
                 <span>Solar</span>
               </div>
               <div className="scada-mix-primary">{`${solarKw.toFixed(1)} kW`}</div>
@@ -202,7 +207,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
             {/* Battery Column */}
             <div className="scada-mix-col">
               <div className="scada-mix-header">
-                <span>🔋</span>
+                <Battery size={14} style={{ color: '#38bdf8' }} />
                 <span>Battery</span>
               </div>
               <div className="scada-mix-primary">{`${batterySoc.toFixed(0)}% SoC`}</div>
@@ -250,7 +255,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
                       <td>{depTime}</td>
                       <td
                         style={{
-                          color: isAtRisk ? '#dc2626' : ev.allocated_power_kw > 0 ? '#16a34a' : '#64748b',
+                          color: isAtRisk ? '#f87171' : ev.allocated_power_kw > 0 ? '#4ade80' : '#a1a1aa',
                           fontWeight: isAtRisk ? 700 : 500,
                         }}
                       >
@@ -261,7 +266,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
                 })
               ) : (
                 <tr>
-                  <td colSpan={6} style={{ textAlign: 'center', color: '#64748b', padding: '1rem' }}>
+                  <td colSpan={6} style={{ textAlign: 'center', color: '#a1a1aa', padding: '1rem' }}>
                     No connected EVs currently reporting.
                   </td>
                 </tr>
@@ -275,7 +280,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
           <h2 className="scada-section-title">SYSTEM / TRANSFORMER</h2>
           <div className="scada-system-box">
             <div className="scada-meter-row">
-              <span className="scada-meter-bar" style={{ color: isOverload ? '#dc2626' : '#0f172a' }}>
+              <span className="scada-meter-bar" style={{ color: isOverload ? '#f87171' : '#ffffff' }}>
                 {blockString}
               </span>
               <span className="scada-meter-pct">{`${utilizationPct.toFixed(1)}%`}</span>
@@ -285,10 +290,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
               <span className="scada-metric-label">Temperature:</span>
               <span
                 className="scada-metric-value"
-                style={{ color: isOverload ? '#dc2626' : ambientTempC > 35 ? '#d97706' : '#0f172a' }}
+                style={{ color: isOverload ? '#f87171' : ambientTempC > 35 ? '#fbbf24' : '#ffffff' }}
               >
                 {`${ambientTempC.toFixed(1)}°C`}
-                {isOverload && ' 🚨 OVERLOAD'}
+                {isOverload && ' OVERLOAD'}
               </span>
             </div>
 
@@ -311,7 +316,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
               <span className="scada-metric-label">Precipitation / Rain:</span>
               <span
                 className="scada-metric-value"
-                style={{ color: rainStatus === 'WET' || rainStatus === 'RAIN' ? '#dc2626' : '#16a34a' }}
+                style={{ color: rainStatus === 'WET' || rainStatus === 'RAIN' ? '#f87171' : '#4ade80' }}
               >
                 {rainStatus} {rainRaw !== undefined && rainRaw !== null ? `(ADC: ${rainRaw})` : ''}
               </span>
@@ -324,19 +329,19 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
           <h2 className="scada-section-title">WARNINGS</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
             {warnings.length > 0 ? (
-              warnings.map((w, idx) => (
+              warnings.map((w: any, idx: number) => (
                 <div
-                  key={`${w.code}-${idx}`}
+                  key={`${w.code || idx}-${idx}`}
                   className={`scada-warning-item ${w.severity === 'critical' ? 'scada-warning-critical' : ''}`}
                 >
-                  <span>⚠</span>
-                  <span>{w.message}</span>
+                  <AlertTriangle size={13} style={{ color: '#f59e0b', flexShrink: 0 }} />
+                  <span>{w.message || w}</span>
                 </div>
               ))
             ) : (
               <div className="scada-warning-item scada-warning-nominal">
-                <span>✓</span>
-                <span>Nominal — All systems operating within baseline parameters</span>
+                <CheckCircle size={13} style={{ color: '#4ade80', flexShrink: 0 }} />
+                <span>Nominal - All systems operating within baseline parameters</span>
               </div>
             )}
           </div>
@@ -360,15 +365,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
         {/* Interactive SCADA Controls Footer */}
         <div className="scada-controls-row">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ fontSize: '0.675rem', color: '#64748b' }}>Poll:</span>
+            <span style={{ fontSize: '0.675rem', color: '#a1a1aa' }}>Poll:</span>
             <select
               value={pollInterval}
               onChange={(e) => setPollInterval(Number(e.target.value))}
               style={{
-                background: '#ffffff',
-                color: '#0f172a',
+                background: '#27272a',
+                color: '#ededed',
                 fontSize: '0.7rem',
-                border: '1px solid #cbd5e1',
+                border: '1px solid #3f3f46',
                 borderRadius: '4px',
                 padding: '2px 6px',
                 fontFamily: 'inherit',
@@ -411,4 +416,3 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigateToMQTT
 };
 
 export default AdminDashboard;
-

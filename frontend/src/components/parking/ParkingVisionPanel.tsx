@@ -109,7 +109,7 @@ export const ParkingVisionPanel: React.FC<ParkingVisionPanelProps> = ({
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.65rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
           <h2 className="scada-section-title" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            <Camera size={14} style={{ color: '#059669' }} />
+            <Camera size={14} style={{ color: '#4ade80' }} />
             PARKING VISION
           </h2>
           <span
@@ -118,9 +118,9 @@ export const ParkingVisionPanel: React.FC<ParkingVisionPanelProps> = ({
               fontWeight: 700,
               padding: '2px 6px',
               borderRadius: '4px',
-              background: '#d1fae5',
-              border: '1px solid #86efac',
-              color: '#059669',
+              background: 'rgba(16, 185, 129, 0.15)',
+              border: '1px solid rgba(16, 185, 129, 0.4)',
+              color: '#4ade80',
               letterSpacing: '0.05em',
             }}
           >
@@ -227,7 +227,7 @@ export const ParkingVisionPanel: React.FC<ParkingVisionPanelProps> = ({
                     borderRadius: '4px',
                     padding: '2px 6px',
                     fontSize: '0.625rem',
-                    color: '#e2e8f0',
+                    color: '#cbd5e1',
                     fontFamily: 'monospace',
                     display: 'flex',
                     alignItems: 'center',
@@ -256,7 +256,7 @@ export const ParkingVisionPanel: React.FC<ParkingVisionPanelProps> = ({
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#e2e8f0' }}>PARKING STATUS</span>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#cbd5e1' }}>PARKING STATUS</span>
                 <span style={{ fontSize: '0.65rem', color: '#38bdf8' }}>{occupancyPercent.toFixed(0)}% Occupancy</span>
               </div>
 
@@ -288,7 +288,7 @@ export const ParkingVisionPanel: React.FC<ParkingVisionPanelProps> = ({
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginBottom: '0.4rem' }}>
                 <Zap size={12} style={{ color: '#fbbf24' }} />
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#e2e8f0' }}>ACTIVE EV ASSIGNMENTS</span>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#cbd5e1' }}>ACTIVE EV ASSIGNMENTS</span>
               </div>
 
               {assignedEvs.length > 0 ? (

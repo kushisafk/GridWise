@@ -72,18 +72,18 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ summary, energy }) => 
   return (
     <div className="space-y-4">
       {/* Header Banner */}
-      <div className="rounded-md border border-slate-200 bg-white p-4 shadow-xs">
+      <div className="rounded-md border border-[#242834] bg-[#141519] p-4 shadow-xs">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="flex items-center gap-2 text-base font-extrabold text-slate-900">
+            <h2 className="flex items-center gap-2 text-base font-extrabold text-[#ededed]">
               <FileText size={18} className="text-blue-600" /> Enterprise SCADA & Utility Report Export Center
             </h2>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-[#a1a1aa]">
               Generate regulatory compliance, engineering audit, and operational telemetry reports in PDF, CSV, or Excel formats.
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded bg-blue-50 px-2.5 py-1 text-xs font-bold text-blue-700 border border-blue-200">
+            <span className="inline-flex items-center gap-1 rounded bg-blue-950/40 px-2.5 py-1 text-xs font-bold text-blue-400 border border-blue-800">
               <CheckCircle2 size={13} /> IEC 61850 Export Compliant
             </span>
           </div>
@@ -94,7 +94,7 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ summary, energy }) => 
       <div className="grid gap-4 lg:grid-cols-3">
         {/* Template List */}
         <div className="space-y-2 lg:col-span-1">
-          <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-600">Select Report Template</h3>
+          <h3 className="text-xs font-extrabold uppercase tracking-wider text-[#a1a1aa]">Select Report Template</h3>
           {REPORT_TEMPLATES.map((t) => {
             const isSelected = t.id === selectedTemplate;
             return (
@@ -103,16 +103,16 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ summary, energy }) => 
                 onClick={() => setSelectedTemplate(t.id)}
                 className={`cursor-pointer rounded-md border p-3.5 transition-colors ${
                   isSelected
-                    ? 'border-blue-600 bg-blue-50/50 shadow-xs'
-                    : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50'
+                    ? 'border-blue-600 bg-blue-950/40 shadow-xs'
+                    : 'border-[#242834] bg-[#141519] hover:border-[#64748b] hover:bg-[#0C0D0F]'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700">{t.category}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400">{t.category}</span>
                   {isSelected && <span className="rounded bg-blue-600 px-1.5 py-0.5 text-[10px] font-bold text-white">Active</span>}
                 </div>
-                <h4 className="mt-1 text-sm font-extrabold text-slate-900">{t.title}</h4>
-                <p className="mt-1 text-xs text-slate-500 line-clamp-2">{t.description}</p>
+                <h4 className="mt-1 text-sm font-extrabold text-[#ededed]">{t.title}</h4>
+                <p className="mt-1 text-xs text-[#a1a1aa] line-clamp-2">{t.description}</p>
               </div>
             );
           })}
@@ -120,19 +120,19 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ summary, energy }) => 
 
         {/* Configuration & Export Panel */}
         <div className="space-y-4 lg:col-span-2">
-          <div className="rounded-md border border-slate-200 bg-white p-4 shadow-xs">
-            <h3 className="text-sm font-extrabold text-slate-900 pb-2 border-b border-slate-100 flex items-center justify-between">
+          <div className="rounded-md border border-[#242834] bg-[#141519] p-4 shadow-xs">
+            <h3 className="text-sm font-extrabold text-[#ededed] pb-2 border-b border-[#242834] flex items-center justify-between">
               <span>Report Configuration: {activeTemplate.title}</span>
-              <span className="font-mono text-xs font-normal text-slate-500">{activeTemplate.id}</span>
+              <span className="font-mono text-xs font-normal text-[#a1a1aa]">{activeTemplate.id}</span>
             </h3>
 
-            <p className="mt-3 text-xs text-slate-600">{activeTemplate.description}</p>
+            <p className="mt-3 text-xs text-[#a1a1aa]">{activeTemplate.description}</p>
 
-            <div className="mt-3 rounded border border-slate-100 bg-slate-50 p-3">
-              <span className="text-xs font-bold uppercase text-slate-700">Metrics Included:</span>
+            <div className="mt-3 rounded border border-[#242834] bg-[#0F1012] p-3">
+              <span className="text-xs font-bold uppercase text-[#d4d4d8]">Metrics Included:</span>
               <div className="mt-1.5 flex flex-wrap gap-1.5">
                 {activeTemplate.metricsCovered.map((m) => (
-                  <span key={m} className="rounded border border-slate-200 bg-white px-2 py-0.5 text-xs font-semibold text-slate-700">
+                  <span key={m} className="rounded border border-[#242834] bg-[#141519] px-2 py-0.5 text-xs font-semibold text-[#d4d4d8]">
                     {m}
                   </span>
                 ))}
@@ -142,11 +142,11 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ summary, energy }) => 
             {/* Parameters */}
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-700">Timeframe Window:</label>
+                <label className="block text-xs font-bold uppercase text-[#d4d4d8]">Timeframe Window:</label>
                 <select
                   value={dateRange}
                   onChange={(e) => setDateRange(e.target.value)}
-                  className="mt-1 w-full rounded border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:border-blue-600 focus:outline-none"
+                  className="mt-1 w-full rounded border border-[#242834] bg-[#0F1012] px-2.5 py-1.5 text-xs font-bold text-[#e4e4e7] focus:border-blue-600 focus:outline-none"
                 >
                   <option value="24h">Last 24 Hours (Rolling Operational)</option>
                   <option value="7d">Last 7 Days (Weekly Audit)</option>
@@ -156,8 +156,8 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ summary, energy }) => 
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase text-slate-700">Substation Zone:</label>
-                <select className="mt-1 w-full rounded border border-slate-300 bg-slate-50 px-2.5 py-1.5 text-xs font-bold text-slate-800 focus:border-blue-600 focus:outline-none">
+                <label className="block text-xs font-bold uppercase text-[#d4d4d8]">Substation Zone:</label>
+                <select className="mt-1 w-full rounded border border-[#242834] bg-[#0F1012] px-2.5 py-1.5 text-xs font-bold text-[#e4e4e7] focus:border-blue-600 focus:outline-none">
                   <option value="all">All Substation Zones (System-wide)</option>
                   <option value="zone4">Zone 4 - North Substation</option>
                   <option value="zone1">Zone 1 - Main Grid Substation</option>
@@ -167,26 +167,26 @@ export const ReportsPage: React.FC<ReportsPageProps> = ({ summary, energy }) => 
             </div>
 
             {/* Export Actions */}
-            <div className="mt-5 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
-              <span className="text-xs text-slate-500">
-                Live Data Snapshot: <strong className="font-mono text-slate-700">{energy?.infrastructure_load_kw.toFixed(1) ?? '47.0'} kW</strong> | Target Format: <strong className="font-mono uppercase text-blue-700">{format}</strong>
+            <div className="mt-5 pt-3 border-t border-[#242834] flex flex-wrap items-center justify-between gap-3">
+              <span className="text-xs text-[#a1a1aa]">
+                Live Data Snapshot: <strong className="font-mono text-[#d4d4d8]">{energy?.infrastructure_load_kw.toFixed(1) ?? '47.0'} kW</strong> | Target Format: <strong className="font-mono uppercase text-blue-400">{format}</strong>
               </span>
 
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => handleExport('csv')}
                   disabled={exporting}
-                  className="flex items-center gap-1.5 rounded border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 hover:bg-slate-50 disabled:opacity-50"
+                  className="flex items-center gap-1.5 rounded border border-[#242834] bg-[#141519] px-3.5 py-2 text-xs font-bold text-[#e4e4e7] hover:bg-[#0C0D0F] disabled:opacity-50"
                 >
-                  <FileCode size={14} className="text-emerald-600" /> Export CSV
+                  <FileCode size={14} className="text-emerald-400" /> Export CSV
                 </button>
 
                 <button
                   onClick={() => handleExport('excel')}
                   disabled={exporting}
-                  className="flex items-center gap-1.5 rounded border border-slate-300 bg-white px-3.5 py-2 text-xs font-bold text-slate-800 hover:bg-slate-50 disabled:opacity-50"
+                  className="flex items-center gap-1.5 rounded border border-[#242834] bg-[#141519] px-3.5 py-2 text-xs font-bold text-[#e4e4e7] hover:bg-[#0C0D0F] disabled:opacity-50"
                 >
-                  <FileSpreadsheet size={14} className="text-emerald-700" /> Export Excel
+                  <FileSpreadsheet size={14} className="text-emerald-400" /> Export Excel
                 </button>
 
                 <button

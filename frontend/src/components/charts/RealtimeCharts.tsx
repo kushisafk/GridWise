@@ -53,7 +53,7 @@ export const RealtimeCharts: React.FC<RealtimeChartsProps> = ({ history }) => {
           <h3 className="subcard-title mb-1 flex items-center gap-1.5">
             <Sun size={14} className="text-amber-400" /> Renewable Solar Availability & Generation
           </h3>
-          <LineChart data={history} series={solarSeries} xAxisKey="time" yAxisUnit=" kW" height={130} />
+          <LineChart data={history} series={solarSeries} xAxisKey="time" yAxisUnit=" %" maxY={100} height={130} />
         </div>
 
         {/* Chart 3: Total EV Demand */}
@@ -69,7 +69,7 @@ export const RealtimeCharts: React.FC<RealtimeChartsProps> = ({ history }) => {
           <h3 className="subcard-title mb-1 flex items-center gap-1.5">
             <Battery size={14} className="text-info" /> Stationary Virtual Battery SoC & Power Dispatch
           </h3>
-          <LineChart data={history} series={batterySeries} xAxisKey="time" yAxisUnit=" %" height={130} />
+          <LineChart data={history} series={batterySeries} xAxisKey="time" yAxisUnit=" %" maxY={100} height={130} />
         </div>
       </div>
     </div>

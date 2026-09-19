@@ -115,14 +115,35 @@ export const useSystemState = (intervalMs: number = 1000): UseSystemStateResult 
             second: '2-digit',
           });
 
+          const totalDemand = nrg.infrastructure_load_kw ?? ((nrg.building_demand_kw || 0) + (nrg.total_ev_allocated_power_kw || 0));
+          const effectiveCapacity = nrg.effective_grid_capacity_kw ?? 25.0;
+          const solarGen = nrg.estimated_solar_generation_kw ?? 0.0;
+          const solarAvail = nrg.solar_availability_percent ?? 0.0;
+          const evFleet = nrg.total_ev_allocated_power_kw ?? 0.0;
+          const bSoc = sumRes.status === 'fulfilled' ? (sumRes.value.battery?.soc_percent ?? 50.0) : 50.0;
+          const bAction = sumRes.status === 'fulfilled' ? sumRes.value.battery?.action : 'idle';
+          const bDischarge = nrg.battery_discharge_kw ?? 0.0;
+          const bCharge = nrg.battery_charge_kw ?? 0.0;
+          const bPower = bAction === 'discharge' ? bDischarge : bAction === 'charge' ? -bCharge : (bDischarge - bCharge);
+
           const point: TimeSeriesPoint = {
             timestamp: nrg.timestamp || now.toISOString(),
             timeLabel,
-            totalDemandKw: nrg.infrastructure_load_kw || 0,
-            effectiveCapacityKw: nrg.effective_grid_capacity_kw || 0,
-            solarGenerationKw: nrg.estimated_solar_generation_kw || 0,
-            evFleetPowerKw: nrg.total_ev_allocated_power_kw || 0,
-            batterySocPercent: sumRes.status === 'fulfilled' ? sumRes.value.battery?.soc_percent || 0 : 0,
+            time: timeLabel,
+            totalDemandKw: totalDemand,
+            effectiveCapacityKw: effectiveCapacity,
+            solarGenerationKw: solarGen,
+            evFleetPowerKw: evFleet,
+            batterySocPercent: bSoc,
+
+            totalDemand,
+            buildingDemand: nrg.building_demand_kw ?? 0.0,
+            evDemand: evFleet,
+            effectiveCapacity,
+            solarGeneration: solarGen,
+            solarAvailability: solarAvail,
+            batterySoc: bSoc,
+            batteryPower: bPower,
           };
 
           setHistory((prev) => {

@@ -31,14 +31,8 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
 
   // Network Host State for external/mobile phone cameras
   const [networkHost, setNetworkHost] = useState<string>(() => {
-    try {
-      if (typeof window !== 'undefined' && typeof localStorage !== 'undefined' && typeof localStorage.getItem === 'function') {
-        const saved = localStorage.getItem('gridwise_lan_ip');
-        if (saved) return saved;
-      }
-    } catch {
-      // Fallback if localStorage unavailable
-    }
+    const saved = localStorage.getItem('gridwise_lan_ip');
+    if (saved) return saved;
     if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       return window.location.hostname;
     }
@@ -53,13 +47,7 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
       const netInfo = await api.getNetworkInfo();
       if (netInfo?.host_ip && netInfo.host_ip !== '127.0.0.1') {
         setNetworkHost(netInfo.host_ip);
-        try {
-          if (typeof window !== 'undefined' && typeof localStorage !== 'undefined' && typeof localStorage.setItem === 'function') {
-            localStorage.setItem('gridwise_lan_ip', netInfo.host_ip);
-          }
-        } catch {
-          // Ignore storage errors
-        }
+        localStorage.setItem('gridwise_lan_ip', netInfo.host_ip);
       }
     } catch {
       // Keep existing default
@@ -149,12 +137,12 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
         {/* Header Branding */}
         <div style={{ width: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-            <Zap size={20} style={{ color: '#2563eb' }} />
-            <h1 className="scada-main-title" style={{ margin: 0, color: '#0f172a' }}>
+            <Zap size={20} style={{ color: '#38bdf8' }} />
+            <h1 className="scada-main-title" style={{ margin: 0 }}>
               GRIDWISE ONBOARDING KIOSK
             </h1>
           </div>
-          <p style={{ fontSize: '0.75rem', color: '#64748b', margin: '0 0 0.5rem 0' }}>
+          <p style={{ fontSize: '0.75rem', color: '#a1a1aa', margin: '0 0 0.5rem 0' }}>
             Interactive One-Time QR Code Terminal for EV Drivers
           </p>
           <div className="scada-divider" />
@@ -165,15 +153,15 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
           <div
             style={{
               width: '100%',
-              background: '#dcfce7',
-              border: '1px solid #86efac',
+              background: 'rgba(16, 185, 129, 0.15)',
+              border: '1px solid #10b981',
               borderRadius: '8px',
               padding: '0.75rem 1rem',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '0.6rem',
-              color: '#15803d',
+              color: '#34d399',
               fontSize: '0.775rem',
             }}
           >
@@ -191,15 +179,15 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '0.75rem',
-            background: '#f8fafc',
-            border: '1px solid #cbd5e1',
+            background: '#0F1012',
+            border: '1px solid #242834',
             borderRadius: '10px',
             padding: '0.65rem 0.85rem',
           }}
         >
           {/* Bay Selector */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.725rem', color: '#334155' }}>
-            <span style={{ color: '#64748b' }}>Bay:</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.725rem', color: '#d4d4d8' }}>
+            <span style={{ color: '#a1a1aa' }}>Bay:</span>
             <select
               value={selectedBay}
               onChange={(e) => {
@@ -207,9 +195,9 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
                 generateNewQR(e.target.value);
               }}
               style={{
-                background: '#ffffff',
-                color: '#0f172a',
-                border: '1px solid #cbd5e1',
+                background: '#141519',
+                color: '#ffffff',
+                border: '1px solid #242834',
                 borderRadius: '6px',
                 padding: '4px 8px',
                 fontFamily: 'inherit',
@@ -227,27 +215,21 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
 
           {/* Network Host IP Config for Mobile Devices */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.725rem' }}>
-            <Wifi size={14} style={{ color: '#2563eb' }} />
-            <span style={{ color: '#64748b' }}>Network Host IP:</span>
+            <Wifi size={14} style={{ color: '#38bdf8' }} />
+            <span style={{ color: '#a1a1aa' }}>Network Host IP:</span>
             <input
               type="text"
               value={networkHost}
               onChange={(e) => {
                 const val = e.target.value;
                 setNetworkHost(val);
-                try {
-                  if (typeof window !== 'undefined' && typeof localStorage !== 'undefined' && typeof localStorage.setItem === 'function') {
-                    localStorage.setItem('gridwise_lan_ip', val);
-                  }
-                } catch {
-                  // Ignore storage errors
-                }
+                localStorage.setItem('gridwise_lan_ip', val);
               }}
               placeholder="e.g. 172.16.12.85"
               style={{
-                background: '#ffffff',
-                color: '#2563eb',
-                border: '1px solid #cbd5e1',
+                background: '#141519',
+                color: '#38bdf8',
+                border: '1px solid #242834',
                 borderRadius: '6px',
                 padding: '4px 8px',
                 fontSize: '0.725rem',
@@ -274,8 +256,7 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
             background: '#ffffff',
             padding: '1.5rem',
             borderRadius: '16px',
-            border: '1px solid #e2e8f0',
-            boxShadow: '0 4px 25px rgba(37, 99, 235, 0.12)',
+            boxShadow: '0 0 35px rgba(56, 189, 248, 0.25)',
             position: 'relative',
             display: 'flex',
             flexDirection: 'column',
@@ -311,7 +292,7 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
                       flexDirection: 'column',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      background: 'rgba(15, 23, 42, 0.85)',
+                      background: 'rgba(15, 23, 42, 0.75)',
                       borderRadius: '12px',
                       color: '#38bdf8',
                       padding: '0.5rem',
@@ -332,7 +313,7 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
                 style={{
                   position: 'absolute',
                   bottom: '-12px',
-                  background: session.status === 'scanned' ? '#0284c7' : '#0f172a',
+                  background: session.status === 'scanned' ? '#0369a1' : '#0f172a',
                   color: session.status === 'scanned' ? '#ffffff' : '#38bdf8',
                   fontSize: '0.7rem',
                   fontWeight: 800,
@@ -346,7 +327,7 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
               </div>
             </>
           ) : (
-            <div style={{ color: '#dc2626', fontSize: '0.8rem' }}>
+            <div style={{ color: '#ef4444', fontSize: '0.8rem' }}>
               {error || 'Failed to load QR code'}
             </div>
           )}
@@ -357,8 +338,8 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
           <div
             style={{
               width: '100%',
-              background: '#eff6ff',
-              border: '1px solid #bfdbfe',
+              background: 'rgba(56, 189, 248, 0.08)',
+              border: '1px solid rgba(56, 189, 248, 0.25)',
               borderRadius: '8px',
               padding: '0.5rem 0.75rem',
               display: 'flex',
@@ -369,16 +350,16 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              <Smartphone size={14} style={{ color: '#2563eb', flexShrink: 0 }} />
-              <span style={{ color: '#64748b' }}>Scans to:</span>
-              <code style={{ color: '#1d4ed8', fontWeight: 600 }}>{targetMobileUrl}</code>
+              <Smartphone size={14} style={{ color: '#38bdf8', flexShrink: 0 }} />
+              <span style={{ color: '#94a3b8' }}>Scans to:</span>
+              <code style={{ color: '#38bdf8', fontWeight: 600 }}>{targetMobileUrl}</code>
             </div>
             <button
               onClick={handleCopyUrl}
               className="scada-btn"
               style={{ padding: '3px 8px', fontSize: '0.675rem', flexShrink: 0 }}
             >
-              {copied ? <Check size={12} style={{ color: '#16a34a' }} /> : <Copy size={12} />}
+              {copied ? <Check size={12} style={{ color: '#4ade80' }} /> : <Copy size={12} />}
               <span>{copied ? 'Copied' : 'Copy'}</span>
             </button>
           </div>
@@ -386,11 +367,11 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
 
         {/* Scan Instructions */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', color: '#0f172a', fontWeight: 700, fontSize: '0.85rem' }}>
-            <Smartphone size={16} style={{ color: '#2563eb' }} />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', color: '#ffffff', fontWeight: 700, fontSize: '0.85rem' }}>
+            <Smartphone size={16} style={{ color: '#38bdf8' }} />
             <span>Scan to track charging status & register vehicle</span>
           </div>
-          <p style={{ fontSize: '0.725rem', color: '#64748b', maxWidth: '440px', lineHeight: 1.4, margin: 0 }}>
+          <p style={{ fontSize: '0.725rem', color: '#a1a1aa', maxWidth: '440px', lineHeight: 1.4, margin: 0 }}>
             Point your mobile camera at the QR code above. Once scanned, this QR will expire automatically for security and track your vehicle live.
           </p>
         </div>
@@ -400,8 +381,8 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
           <div
             style={{
               width: '100%',
-              background: '#f8fafc',
-              border: '1px solid #cbd5e1',
+              background: '#0F1012',
+              border: '1px solid #242834',
               borderRadius: '8px',
               padding: '0.75rem 1rem',
               display: 'flex',
@@ -411,14 +392,14 @@ export const KioskQRStationPage: React.FC<KioskQRStationPageProps> = ({
             }}
           >
             <div>
-              <span style={{ color: '#64748b' }}>Token ID: </span>
-              <strong style={{ color: '#0f172a' }}>{session.session_id}</strong>
+              <span style={{ color: '#a1a1aa' }}>Token ID: </span>
+              <strong style={{ color: '#ffffff' }}>{session.session_id}</strong>
             </div>
             <div>
-              <span style={{ color: '#64748b' }}>Status: </span>
+              <span style={{ color: '#a1a1aa' }}>Status: </span>
               <span
                 style={{
-                  color: session.status === 'active' ? '#16a34a' : session.status === 'registered' ? '#0284c7' : '#d97706',
+                  color: session.status === 'active' ? '#4ade80' : session.status === 'registered' ? '#38bdf8' : '#fbbf24',
                   fontWeight: 700,
                   textTransform: 'uppercase',
                 }}

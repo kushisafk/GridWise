@@ -57,7 +57,7 @@ export const OptimizationStatus: React.FC<OptimizationStatusProps> = ({ optimiza
       </div>
 
       {hasWarnings && (
-        <div className="mt-2 text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 p-1.5 rounded border border-amber-200 dark:border-amber-800">
+        <div className="mt-2 text-xs text-amber-400 bg-amber-950/30 p-1.5 rounded border border-amber-800">
           <div className="font-semibold flex items-center gap-1">
             <AlertCircle size={12} /> Optimization Alerts:
           </div>

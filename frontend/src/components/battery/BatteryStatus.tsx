@@ -54,7 +54,7 @@ export const BatteryStatus: React.FC<BatteryStatusProps> = ({ battery, energy })
         {/* Contribution Power */}
         <div className="kpi-card">
           <div className="kpi-icon bg-primary-subtle text-primary">
-            {action === 'discharge' ? <ArrowDown size={20} className="text-emerald-500" /> : action === 'charge' ? <ArrowUp size={20} className="text-amber-500" /> : <Minus size={20} />}
+            {action === 'discharge' ? <ArrowDown size={20} className="text-emerald-500" /> : action === 'charge' ? <ArrowUp size={20} className="text-amber-400" /> : <Minus size={20} />}
           </div>
           <div>
             <span className="kpi-label">Power Contribution</span>
